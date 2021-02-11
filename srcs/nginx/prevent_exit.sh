@@ -1,4 +1,6 @@
 #!/bin/sh
 echo “Prevent exit container”
-nginx
-/bin/sh
+nginx -g 'daemon off;' # 멈춤
+
+# nginx
+# /bin/sh

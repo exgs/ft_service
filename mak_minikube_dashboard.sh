@@ -14,8 +14,9 @@ kubectl create secret generic -n metallb-system memberlist --from-literal=secret
 kubectl create -f ./srcs/metallb/metallb-configmap.yaml
 
 
-docker build -t nginx ./srcs/nginx/
+docker build -t ft_nginx ./srcs/nginx/
 kubectl create -f ./srcs/nginx/nginx-service.yaml
+kubectl create -f ./srcs/nginx/nginx-deployment.yaml
 echo "\033[33m";echo "minikube dashboard";echo "\033[0m"
 minikube dashboard
 echo "\033[33m";echo "Finish metalLB setup";echo "\033[0m"
