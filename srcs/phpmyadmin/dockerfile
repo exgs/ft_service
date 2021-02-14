@@ -4,6 +4,7 @@ EXPOSE	5000
 RUN		apk update
 RUN 	apk add php \
 				php-fpm php-mbstring php-json php-session php-mysqli php-session
+RUN		apk add nginx
 
 RUN	wget -O /tmp/phpmyadmin.tar.gz https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
 RUN tar -xzvf /tmp/phpmyadmin.tar.gz -C /tmp
@@ -12,10 +13,12 @@ RUN mv /tmp/php* /tmp/phpmyadmin
 RUN mv /tmp/phpmyadmin/config.sample.inc.php /tmp/phpmyadmin/config.inc.php
 RUN sed -i '/AllowNoPassword/ s/false/true/g' /tmp/phpmyadmin/config.inc.php
 
-# COPY	default.conf /etc/nginx/http.d/default.conf
+COPY	default.conf /etc/nginx/http.d/default.conf
 COPY	prevent_exit.sh /prevent_exit.sh
-# RUN		mkdir -p /run/nginx
+RUN		mkdir -p /run/nginx
 
-# CMD		php-fpm7 왜 필요한지 모르겠음
-CMD		php -S 0.0.0.0:5000 -t /tmp/phpmyadmin/
-# CMD		/prevent_exit.sh #php -S 0.0.0.0:5000 을 실행시키지못함
+# nginx로 phpmyadmin을 열려면 nginx, php-fpm7 을 실행시켜줘야함
+
+# CMD		php -S 0.0.0.0:5000 -t /tmp/phpmyadmin/
+# CMD		/prevent_exit.sh
+# /prevent_exit.sh 은php -S 0.0.0.0:5000 을 실행시키지못함

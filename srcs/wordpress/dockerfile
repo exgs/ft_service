@@ -1,0 +1,21 @@
+FROM alpine:3.12
+
+# nginx 패키지 설치
+RUN apk update
+RUN apk add nginx
+RUN mkdir -p /run/nginx
+# php패키지 설치
+RUN apk add php7 php7-fpm php7-opcache php7-gd php7-mysqli \
+	php7-zlib php7-curl php7-mbstring php7-json php7-session
+# wordpress 패키지 설치
+RUN wget https://wordpress.org/latest.tar.gz &&  \
+	tar -xvf latest.tar.gz
+RUN	rm -rf latest.tar.gz
+RUN mv wordpress /tmp
+
+COPY default.conf /etc/nginx/conf.d/
+COPY wp-config.php /tmp/wordpress/
+COPY prevent_exit.sh /tmp/
+
+CMD /tmp/prevent_exit.sh
+# html파일용 디렉토리 만들기

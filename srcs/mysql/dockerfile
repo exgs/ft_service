@@ -1,0 +1,16 @@
+FROM alpine
+
+RUN apk update \
+		&& apk --update --no-cache add \
+				mysql \
+				mysql-client
+
+# RUN addgroup mysql mysql
+RUN mkdir /run/mysqld
+COPY my.cnf /etc/mysql/my.cnf
+COPY mysql_init.sql /tmp/
+COPY run.sh /tmp/
+
+# CMD /tmp/run.sh
+
+EXPOSE 3306
