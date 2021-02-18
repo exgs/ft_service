@@ -11,7 +11,6 @@ spec:
   replicas: 1
   template:
     metadata:
-      name: phpmyadmin
       labels:
         app: phpmyadmin
     spec:
@@ -21,12 +20,12 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 5000
-          volumeMounts:
-            - name: phpmyadmin-config
-              subPath: config.inc.php
-              mountPath: /etc/phpmyadmin/config.inc.php
-              readOnly: true
-      volumes:
-        - name: phpmyadmin-config
-          configMap:
-            name: phpmyadmin
+      #     volumeMounts:
+      #       - name: phpmyadmin-config
+      #         subPath: config.inc.php
+      #         mountPath: /etc/phpmyadmin/config.inc.php
+      #         readOnly: true
+      # volumes:
+      #   - name: phpmyadmin-config
+      #     configMap:
+      #       name: phpmyadmin

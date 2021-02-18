@@ -29,8 +29,8 @@ define( 'DB_USER', '1' );
 define( 'DB_PASSWORD', '1' );
 
 /** MySQL hostname */
-define( 'DB_HOST', '172.17.0.2' ); // 수작업해줄 때, docker의 mysql의 내부아이피주소
-// define( 'DB_HOST', 'localhost' ); // 로드벨런서로 자동일때, localhost로 지정
+// define( 'DB_HOST', '172.17.0.2' ); // 수작업해줄 때, docker의 mysql의 내부아이피주소
+define( 'DB_HOST', 'mysql' ); // 로드벨런서로 자동일때, service name으로 지정
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

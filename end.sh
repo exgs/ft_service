@@ -15,13 +15,14 @@ kubectl delete configmap --all
 echo "\033[33m"kubectl delete pod --all"\033[0m"
 kubectl delete pod --all
 
-echo "\033[33m"kubectl delete persistentvolume --all"\033[0m"
-kubectl delete persistentvolume --all
+# echo "\033[33m"kubectl delete persistentvolume --all"\033[0m"
+# kubectl delete persistentvolume --all
 
 echo "\033[33m"kubectl delete secret --all"\033[0m"
 kubectl delete secret --all
 
-echo "\033[33m"minikube stop"\033[0m"
-minikube stop
+## 아래 명령어들은 오래걸림
+# echo "\033[33m"minikube stop"\033[0m"
+# minikube stop
 # echo "\033[33m"minikube delete"\033[0m"
 # minikube delete

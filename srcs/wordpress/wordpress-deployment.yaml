@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+      app: wordpress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - name: wordpress
+        image: ft_wordpress
+        imagePullPolicy: Never # remote에서 pull할껀지 물어보는 거 같음.
+        ports:
+        - containerPort: 5050
+          name: wordpress
