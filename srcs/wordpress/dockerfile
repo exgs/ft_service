@@ -14,7 +14,7 @@ RUN	rm -rf latest.tar.gz
 RUN mv wordpress /tmp
 
 COPY default.conf /etc/nginx/conf.d/
-COPY wp-config.php /tmp/wordpress/
+COPY wp-config.php /tmp/wordpress/wp-config.php
 COPY prevent_exit.sh /tmp/
 
 CMD /tmp/prevent_exit.sh
