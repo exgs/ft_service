@@ -1,6 +1,7 @@
 #!/bin/sh
 echo “Prevent exit container”
-nginx -g 'daemon off;' # ssh에서 대기 상태로 존재
+/usr/sbin/sshd # 절대경로로 실행시켜줘야 실행되야한다. 본인의 위치를 알고싶다나 뭐라나
+nginx -g 'daemon off;' # sh에서 대기 상태로 존재
 /bin/sh # ^\ 로 중지 시켜도 container shell에 존재하도록 하기위해서! 
 
 

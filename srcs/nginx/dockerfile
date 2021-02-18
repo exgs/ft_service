@@ -6,6 +6,14 @@ RUN 	apk add --no-cache nginx \
 				openssl \
 				openssh
 
+# ssh 설정
+# https://zetawiki.com/wiki/SSH_%EC%A0%91%EC%86%8D_%EA%B0%80%EB%8A%A5%ED%95%9C_%EC%95%8C%ED%8C%8C%EC%9D%B8_%EB%8F%84%EC%BB%A4_%EC%9D%B4%EB%AF%B8%EC%A7%80_%EB%B9%8C%EB%93%9C				
+RUN sed 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' -i /etc/ssh/sshd_config
+RUN echo 'root:1' | chpasswd
+RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
+RUN ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa
+RUN mkdir -p /var/run/sshd
+
 # COPY	default.conf /etc/nginx/http.d/default.conf
 # nginx 사용자, 그룹 `www`만들기
 RUN	mkdir -p /run/nginx
