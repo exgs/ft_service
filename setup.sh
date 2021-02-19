@@ -25,6 +25,7 @@ kubectl apply -f ./srcs/phpmyadmin/phpmyadmin-deployment.yaml
 docker build -t ft_mysql ./srcs/mysql/
 kubectl apply -f ./srcs/mysql/mysql-service.yaml
 kubectl apply -f ./srcs/mysql/mysql-deployment.yaml
+kubectl apply -f ./srcs/mysql/mysql-pvc.yaml
 
 docker build -t ft_wordpress ./srcs/wordpress/
 kubectl apply -f ./srcs/wordpress/wordpress-service.yaml

@@ -18,6 +18,9 @@ kubectl delete pod --all
 # echo "\033[33m"kubectl delete persistentvolume --all"\033[0m"
 # kubectl delete persistentvolume --all
 
+echo "\033[33m"kubectl delete persistentvolumeclaims --all"\033[0m"
+kubectl delete persistentvolumeclaims --all
+
 echo "\033[33m"kubectl delete secret --all"\033[0m"
 kubectl delete secret --all
 
