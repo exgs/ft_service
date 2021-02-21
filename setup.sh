@@ -31,6 +31,10 @@ docker build -t ft_wordpress ./srcs/wordpress/
 kubectl apply -f ./srcs/wordpress/wordpress-service.yaml
 kubectl apply -f ./srcs/wordpress/wordpress-deployment.yaml
 
+docker build -t ft_ftps ./srcs/ftps/
+kubectl apply -f ./srcs/ftps/ftps-service.yaml
+kubectl apply -f ./srcs/ftps/ftps-deployment.yaml
+
 echo "\033[33m";echo "minikube dashboard";echo "\033[0m"
 minikube dashboard
 echo "\033[33m";echo "Finish metalLB setup";echo "\033[0m"

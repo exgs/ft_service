@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftps
+  labels:
+    app: ftps
+spec:
+  selector:
+    matchLabels:
+      app: ftps
+  template:
+    metadata:
+      labels:
+        app: ftps
+    spec:
+      containers:
+      - name: ftps
+        image: ft_ftps
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 21
+          - containerPort: 20000
+          - containerPort: 20001
+          - containerPort: 20002
+          - containerPort: 20003
+        # envFrom:
+        # - secretRef:
+        #     name: account
+        # - secretRef:
+        #     name: host-ip
+      #   volumeMounts:
+      #   - name: vsftpd-persistent-storage
+      #     mountPath: /home
+      #   - name: vsftpd-config
+      #     subPath: vsftpd.conf
+      #     mountPath: /etc/vsftpd/vsftpd.conf
+      #     readOnly: true
+      # volumes:
+      # - name: vsftpd-persistent-storage
+      #   persistentVolumeClaim:
+      #     claimName: vsftpd-pv-claim
+      # - name: vsftpd-config
+      #   configMap:
+      #     name: vsftpd-config
