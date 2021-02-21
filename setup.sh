@@ -11,7 +11,13 @@ eval $(minikube docker-env)
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-kubectl apply -f ./srcs/metallb/metallb-configmap.yaml
+
+#metallb 로드벨런서 ip range 할당해주기
+export ADDRESSES="- $(minikube ip)-$(minikube ip)"
+sed -i "" "s/ADDRESSES/$ADDRESSES/" srcs/metallb/metallb-configmap.yaml
+kubectl apply -f srcs/metallb/metallb-configmap.yaml
+sed -i "" "s/$ADDRESSES/ADDRESSES/" srcs/metallb/metallb-configmap.yaml
+
 
 
 docker build -t ft_nginx ./srcs/nginx/
