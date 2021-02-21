@@ -1,4 +1,4 @@
-# # 동적볼륨할당
+# 동적볼륨할당 -> 으로 하니깐 안됨 pending 뜲 pvc 한번 생기면 지우기 골치아파진다...
 # apiVersion: v1
 # kind: PersistentVolumeClaim
 # metadata:
@@ -8,8 +8,8 @@
 # spec:
 #   accessModes:
 #     - ReadWriteOnce
-#   # hostPath:
-#   #   path: "/tmp/mysql-pv"
+#   hostPath:
+#     path: "/tmp/mysql-pv"
 #   resources:
 #     requests:
 #       storage: 500Mi
@@ -49,4 +49,4 @@ spec:
   selector:
     matchLabels:
       pv: mysql # binding할 pv를 생성된 pv중에서 label로 선택함
----
+# ---
