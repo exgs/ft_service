@@ -13,10 +13,13 @@ RUN mv /tmp/php* /tmp/phpmyadmin
 RUN mv /tmp/phpmyadmin/config.sample.inc.php /tmp/phpmyadmin/config.inc.php
 
 # config.inc.php 파일 수정
+# 여기서 주의해야하는 점은 macOS의 sed와 Linux의 sed가 명령어가 조금 다르다는 것이다.
+# https://stackoverflow.com/questions/16745988/sed-command-with-i-option-in-place-editing-works-fine-on-ubuntu-but-not-mac
 RUN sed -i '/AllowNoPassword/ s/false/true/g' /tmp/phpmyadmin/config.inc.php
 RUN sed -i '/host/ s/localhost/mysql/g' /tmp/phpmyadmin/config.inc.php
-# RUN sed -i '/blowfish_secret/ s/ /whatareyoudoinglgl1234546560093563049dfklsgdl;fgdsfgddg/g' /tmp/phpmyadmin/config.inc.php
+RUN sed -i '/blowfish_secret/d' /tmp/phpmyadmin/config.inc.php
 RUN echo "\$cfg['TempDir'] = '/tmp';" >> /tmp/phpmyadmin/config.inc.php
+RUN echo "\$cfg['blowfish_secret'] = '1q2w3e4r5t6y7u8i9o0p 1q2w3e4r5t6y7u8i9o0p 1q2w3e4r5t6y7u8i9o0p 1q2w3e4r5t6y7u8i9o0p';" >> /tmp/phpmyadmin/config.inc.php
 
 COPY	default.conf /etc/nginx/conf.d/default.conf
 
