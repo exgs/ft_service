@@ -12,8 +12,8 @@ kubectl delete deployment --all
 echo "\033[33m"kubectl delete configmap --all"\033[0m"
 kubectl delete configmap --all
 
-echo "\033[33m"kubectl delete pod --all"\033[0m"
-kubectl delete pod --all
+# echo "\033[33m"kubectl delete pod --all"\033[0m" #deployment를 삭제해주면, pod는 알아서 삭제된다. wordpress에서 병목현상이 나타난 이유도 여기에 있을 꺼 같다.
+# kubectl delete pod --all
 
 echo "\033[33m"kubectl delete persistentvolumeclaims --all"\033[0m"
 kubectl delete persistentvolumeclaims --all
