@@ -22,4 +22,7 @@ kubectl apply -f ./srcs/mysql/mysql-pvc.yaml
 kubectl apply -f ./srcs/wordpress/wordpress-service.yaml
 kubectl apply -f ./srcs/wordpress/wordpress-deployment.yaml
 
+kubectl apply -f ./srcs/ftps/ftps-service.yaml
+kubectl apply -f ./srcs/ftps/ftps-deployment.yaml
+
 echo "\033[33m";echo "Finish";echo "\033[0m"
