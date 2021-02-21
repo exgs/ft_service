@@ -12,6 +12,7 @@ RUN			apk add vsftpd openssl
 COPY		./ssl-setting.sh /ssl-setting.sh
 COPY		./prevent_exit.sh /prevent_exit.sh
 COPY		./vsftpd.conf /etc/vsftpd
+# fpts의 사용자명과 비밀번호 설정
 RUN			echo 'root:1' | chpasswd
 CMD			/ssl-setting.sh ; /prevent_exit.sh
  # ';'가 없으면 ^\로 못나감 ^C 밖에 없음. 근데 그러면 무조껀 종료됨
