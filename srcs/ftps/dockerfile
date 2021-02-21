@@ -1,0 +1,11 @@
+FROM		alpine
+EXPOSE		21 20000-20003
+RUN			apk add vsftpd openssl
+
+
+COPY		./ssl-setting.sh /ssl-setting.sh
+COPY		./prevent_exit.sh /prevent_exit.sh
+COPY		./vsftpd.conf /etc/vsftpd
+RUN			echo 'root:1' | chpasswd
+CMD			/ssl-setting.sh ; /prevent_exit.sh
+ # ';'가 없으면 ^\로 못나감 ^C 밖에 없음. 근데 그러면 무조껀 종료됨
