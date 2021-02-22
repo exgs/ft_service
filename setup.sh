@@ -19,29 +19,33 @@ sed -i "" "s/$ADDRESSES/ADDRESSES/" srcs/metallb/metallb-configmap.yaml
 
 
 
-docker build -t ft_nginx ./srcs/nginx/
-kubectl apply -f ./srcs/nginx/nginx-service.yaml
-kubectl apply -f ./srcs/nginx/nginx-deployment.yaml
-
-docker build -t ft_phpmyadmin ./srcs/phpmyadmin/
-kubectl apply -f ./srcs/phpmyadmin/phpmyadmin-service.yaml
-kubectl apply -f ./srcs/phpmyadmin/phpmyadmin-deployment.yaml
 
 docker build -t ft_mysql ./srcs/mysql/
 kubectl apply -f ./srcs/mysql/mysql-service.yaml
 kubectl apply -f ./srcs/mysql/mysql-deployment.yaml
 kubectl apply -f ./srcs/mysql/mysql-pvc.yaml
 
+docker build -t ft_phpmyadmin ./srcs/phpmyadmin/
+kubectl apply -f ./srcs/phpmyadmin/phpmyadmin-service.yaml
+kubectl apply -f ./srcs/phpmyadmin/phpmyadmin-deployment.yaml
+
+
 docker build -t ft_wordpress ./srcs/wordpress/
 kubectl apply -f ./srcs/wordpress/wordpress-service.yaml
 kubectl apply -f ./srcs/wordpress/wordpress-deployment.yaml
 
-export HOST_IP="$(minikube ip)"
-sed -i "" "s/HOST_IP/$HOST_IP/" srcs/ftps/vsftpd.conf
+
+# minikube status에서 얘네가 문제가 아니네
+export _EXTERNAL_IP="$(minikube ip)"
+sed -i "" "s/_EXTERNAL_IP/$_EXTERNAL_IP/" srcs/ftps/vsftpd.conf
 docker build -t ft_ftps ./srcs/ftps/
 kubectl apply -f ./srcs/ftps/ftps-service.yaml
 kubectl apply -f ./srcs/ftps/ftps-deployment.yaml
-sed -i "" "s/$HOST_IP/HOST_IP/" srcs/ftps/vsftpd.conf
+sed -i "" "s/$_EXTERNAL_IP/_EXTERNAL_IP/" srcs/ftps/vsftpd.conf
+
+docker build -t ft_nginx ./srcs/nginx/
+kubectl apply -f ./srcs/nginx/nginx-service.yaml
+kubectl apply -f ./srcs/nginx/nginx-deployment.yaml
 
 echo "\033[33m";echo "minikube dashboard";echo "\033[0m"
 minikube dashboard
