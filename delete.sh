@@ -2,6 +2,8 @@ echo "\033[33m";echo "----------delete.sh----------";echo "\033[0m"
 
 echo "\033[33m"kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml"\033[0m"
 kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+echo "\033[33m"kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml"\033[0m"
+kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
 
 echo "\033[33m"kubectl delete services --all"\033[0m"
 kubectl delete services --all
