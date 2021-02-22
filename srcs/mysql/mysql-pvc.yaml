@@ -25,7 +25,7 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 500Mi
+    storage: 10Mi
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -45,7 +45,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 500Mi
+      storage: 10Mi
   selector:
     matchLabels:
       pv: mysql # binding할 pv를 생성된 pv중에서 label로 선택함
