@@ -20,6 +20,13 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 20
+      
+      ## 나는 이 부분을 Dockerfile에서 sed 명령어로 config.inc.php를 수정해주었음.
       #     volumeMounts:
       #       - name: phpmyadmin-config
       #         subPath: config.inc.php

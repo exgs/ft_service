@@ -21,3 +21,9 @@ spec:
         ports:
         - containerPort: 5050
           name: wordpress
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 20
+
