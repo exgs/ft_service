@@ -1,4 +1,5 @@
 FROM alpine:3.12
+EXPOSE 5050
 
 # nginx 패키지 설치
 RUN apk update
