@@ -4,7 +4,6 @@ echo "\033[33m";echo "----------setup.sh----------";echo "\033[0m"
 
 # echo "\033[33m";echo "minikube addons enable metallb";echo "\033[0m"
 # minikube addons enable metallb
-# kubectl apply -f
 
 echo "\033[33m";echo '$(minikube docker-env)';echo "\033[0m"
 eval $(minikube docker-env)
@@ -46,4 +45,3 @@ sed -i "" "s/$HOST_IP/HOST_IP/" srcs/ftps/vsftpd.conf
 
 echo "\033[33m";echo "minikube dashboard";echo "\033[0m"
 minikube dashboard
-echo "\033[33m";echo "Finish metalLB setup";echo "\033[0m"
