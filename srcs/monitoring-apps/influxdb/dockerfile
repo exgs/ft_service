@@ -1,6 +1,6 @@
-FROM alpine:latest
+FROM alpine:3.12
 
-RUN apk add influxdb --no-cache
+RUN apk add --update --no-cache influxdb
 
 EXPOSE 8086
 
@@ -11,4 +11,6 @@ EXPOSE 8086
 # 흠.. 그러면 DB의 이름이나 user, password 등은 어떻게 되는거지? -> 전역 변수로 해결할 수 있다.
 # influxdb environment variables 등의 키워드로 구글검색하면 된다.
 # 데이터베이스 서버는 보통 전역변수로 하는게 일반적인거 같음.
+COPY		influxdb.conf /etc/influxdb/influxdb.conf
+# 설정파일을 /etc/influxdb.conf 에 넣기도 함 ykoh
 ENTRYPOINT ["/usr/sbin/influxd"]

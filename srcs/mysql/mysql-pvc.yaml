@@ -29,7 +29,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data/mysql2"
+    path: "/mnt/data/mysql"
 
 ---
 
