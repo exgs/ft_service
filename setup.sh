@@ -18,8 +18,6 @@ kubectl apply -f srcs/metallb/metallb-configmap.yaml
 sed -i "" "s/$ADDRESSES/ADDRESSES/" srcs/metallb/metallb-configmap.yaml
 
 
-
-
 docker build -t ft_mysql ./srcs/mysql/
 kubectl apply -f ./srcs/mysql/mysql-service.yaml
 kubectl apply -f ./srcs/mysql/mysql-deployment.yaml
@@ -43,9 +41,22 @@ kubectl apply -f ./srcs/ftps/ftps-service.yaml
 kubectl apply -f ./srcs/ftps/ftps-deployment.yaml
 sed -i "" "s/$_EXTERNAL_IP/_EXTERNAL_IP/" srcs/ftps/vsftpd.conf
 
-# docker build -t ft_telegraf ./srcs/monitoring-apps/telegraf/
-# kubectl apply -f ./srcs/telegraf/monitoring-apps/telegraf-deployment.yaml
+docker build -t ft_influxdb .
+kubectl apply -f ./srcs/monitoring-apps/influxdb/influxdb-service.yaml
+kubectl apply -f ./srcs/monitoring-apps/influxdb/influxdb-pv.yaml
+kubectl apply -f ./srcs/monitoring-apps/influxdb/influxdb-pvc.yaml
+kubectl apply -f ./srcs/monitoring-apps/influxdb/influxdb-secret.yaml
+kubectl apply -f ./srcs/monitoring-apps/influxdb/influxdb-deployment.yaml
 
+docker build -t ft_telegraf .
+kubectl apply -f ./srcs/monitoring-apps/telegraf/telegraf-deployment.yaml
+
+docker build -t ft_grafana .
+kubectl apply -f ./srcs/monitoring-apps/grafana/grafana-deployment.yaml
+kubectl apply -f ./srcs/monitoring-apps/grafana/grafana-configmap.yaml
+kubectl apply -f ./srcs/monitoring-apps/grafana/grafana-service.yaml
+
+## 제일 나중에 넣어줘야 minikube가 status를 stop으로 알아보는 버그에 안걸림
 docker build -t ft_nginx ./srcs/nginx/
 kubectl apply -f ./srcs/nginx/nginx-service.yaml
 kubectl apply -f ./srcs/nginx/nginx-deployment.yaml
