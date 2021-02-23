@@ -28,5 +28,5 @@ spec:
         livenessProbe:
           tcpSocket:
             port: 22
-          initialDelaySeconds: 20
+          initialDelaySeconds: 2
 

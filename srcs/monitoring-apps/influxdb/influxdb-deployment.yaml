@@ -20,7 +20,7 @@ spec:
           ports:
             - containerPort: 8086
           livenessProbe:
-            initialDelaySeconds: 20
+            initialDelaySeconds: 2
             periodSeconds: 10
             timeoutSeconds: 5
             httpGet:

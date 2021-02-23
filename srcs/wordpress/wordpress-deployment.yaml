@@ -25,5 +25,5 @@ spec:
           httpGet:
             path: /
             port: 5050
-          initialDelaySeconds: 20
+          initialDelaySeconds: 2
 
