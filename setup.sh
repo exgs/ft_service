@@ -41,17 +41,17 @@ kubectl apply -f ./srcs/ftps/ftps-service.yaml
 kubectl apply -f ./srcs/ftps/ftps-deployment.yaml
 sed -i "" "s/$_EXTERNAL_IP/_EXTERNAL_IP/" srcs/ftps/vsftpd.conf
 
-docker build -t ft_influxdb .
+docker build -t ft_influxdb ./srcs/monitoring-apps/influxdb/
 kubectl apply -f ./srcs/monitoring-apps/influxdb/influxdb-service.yaml
 kubectl apply -f ./srcs/monitoring-apps/influxdb/influxdb-pv.yaml
 kubectl apply -f ./srcs/monitoring-apps/influxdb/influxdb-pvc.yaml
 kubectl apply -f ./srcs/monitoring-apps/influxdb/influxdb-secret.yaml
 kubectl apply -f ./srcs/monitoring-apps/influxdb/influxdb-deployment.yaml
 
-docker build -t ft_telegraf .
+docker build -t ft_telegraf ./srcs/monitoring-apps/telegraf/
 kubectl apply -f ./srcs/monitoring-apps/telegraf/telegraf-deployment.yaml
 
-docker build -t ft_grafana .
+docker build -t ft_grafana ./srcs/monitoring-apps/grafana/
 kubectl apply -f ./srcs/monitoring-apps/grafana/grafana-deployment.yaml
 kubectl apply -f ./srcs/monitoring-apps/grafana/grafana-configmap.yaml
 kubectl apply -f ./srcs/monitoring-apps/grafana/grafana-service.yaml
