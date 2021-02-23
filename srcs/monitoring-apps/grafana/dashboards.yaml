@@ -7,3 +7,4 @@ providers:
   type: file
   options:
     path: /usr/share/grafana/public/dashboards
+## path : 도커파일에서 dashboard 구성파일들을 넣어줬던 경로

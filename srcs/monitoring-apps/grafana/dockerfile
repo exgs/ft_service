@@ -18,11 +18,9 @@ RUN apk update \
 
 # COPY		datasources.yaml /usr/share/grafana/conf/provisioning/datasources/datasources.yaml
 # COPY		dashboards.yaml /usr/share/grafana/conf/provisioning/datasources/dashboards.yaml
-# COPY		dashboards /usr/share/grafana/public/dashboards
+COPY		dashboards /usr/share/grafana/public/dashboards
 ENTRYPOINT	[ "grafana-server", "--homepath=/usr/share/grafana"]
-# CMD			/usr/share/grafana/bin/grafana-server --homepath=/usr/share/grafana; 
+
 # CMD			/bin/sh
-# /usr/share/grafana/bin/grafana-server --homepath=/usr/share/grafana
 # grafana-server --homepath=/usr/share/grafana
-# export PATH=$PATH:/usr/share/grafana/bin
 

@@ -19,16 +19,16 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 3000
-      #   volumeMounts:
-      #   - name: grafana-cm
-      #     subPath: datasources.yaml
-      #     mountPath: /usr/share/grafana/conf/provisioning/datasources/datasources.yaml
-      #     readOnly: true
-      #   - name: grafana-cm
-      #     subPath: dashboards.yaml
-      #     mountPath: /usr/share/grafana/conf/provisioning/dashboards/dashboards.yaml
-      #     readOnly: true
-      # volumes:
-      # - name: grafana-cm
-      #   configMap:
-      #     name: grafana-configmap
+        volumeMounts:
+        - name: grafana-cm
+          subPath: datasources.yaml
+          mountPath: /usr/share/grafana/conf/provisioning/datasources/datasources.yaml
+          readOnly: true
+        - name: grafana-cm
+          subPath: dashboards.yaml
+          mountPath: /usr/share/grafana/conf/provisioning/dashboards/dashboards.yaml
+          readOnly: true
+      volumes:
+      - name: grafana-cm
+        configMap:
+          name: grafana-configmap
