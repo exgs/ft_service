@@ -43,6 +43,9 @@ kubectl apply -f ./srcs/ftps/ftps-service.yaml
 kubectl apply -f ./srcs/ftps/ftps-deployment.yaml
 sed -i "" "s/$_EXTERNAL_IP/_EXTERNAL_IP/" srcs/ftps/vsftpd.conf
 
+# docker build -t ft_telegraf ./srcs/monitoring-apps/telegraf/
+# kubectl apply -f ./srcs/telegraf/monitoring-apps/telegraf-deployment.yaml
+
 docker build -t ft_nginx ./srcs/nginx/
 kubectl apply -f ./srcs/nginx/nginx-service.yaml
 kubectl apply -f ./srcs/nginx/nginx-deployment.yaml
