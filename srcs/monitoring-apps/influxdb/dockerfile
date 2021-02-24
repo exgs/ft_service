@@ -14,3 +14,4 @@ EXPOSE 8086
 COPY		influxdb.conf /etc/influxdb/influxdb.conf
 # 설정파일을 /etc/influxdb.conf 에 넣기도 함 ykoh
 ENTRYPOINT ["/usr/sbin/influxd"]
+# influxd는 포그라운드

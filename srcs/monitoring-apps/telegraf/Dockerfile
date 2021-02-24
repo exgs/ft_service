@@ -10,3 +10,4 @@ RUN	wget https://dl.influxdata.com/telegraf/releases/telegraf-${TELEGRAF_VERSION
 RUN			mkdir -p /etc/telegraf
 COPY		telegraf.conf /etc/telegraf
 CMD			/usr/bin/telegraf
+# telegraf는 포그라운드

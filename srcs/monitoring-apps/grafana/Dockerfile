@@ -20,6 +20,7 @@ RUN apk update \
 # COPY		dashboards.yaml /usr/share/grafana/conf/provisioning/datasources/dashboards.yaml
 COPY		dashboards /usr/share/grafana/public/dashboards
 ENTRYPOINT	[ "grafana-server", "--homepath=/usr/share/grafana"]
+# grafana-sever 포그라운드
 
 # CMD			/bin/sh
 # grafana-server --homepath=/usr/share/grafana

@@ -5,6 +5,7 @@ mysql_install_db --user=root
 mysqld --user=root --bootstrap < /tmp/mysql-init.sql
 # 서버 시작. 서버가 돌아가는 와중에 이제 만들어진 wordpress 테이블에 wordpress.sql 데이터가 들어온다. 이 작업은 wordpress.sql에서 해준다.
 mysqld --user=root  # mysql-init.sql에서 만든 아이디가 phpmyadmin으로 접근하는 아이디가 됨
+# 포그라운드로 돌아감
 
 /bin/sh # mysqld에 병목현상에 의해서 실행되기만을 기다리는 프로그램
 # 혹시나 docker attach 헀을 때, mysqld에서 대기하고 있는 상태라면, ^C, ^\해도 컨테이너가 꺼지지 않도록하기위해서 만들어줬어요

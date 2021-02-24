@@ -21,7 +21,7 @@ spec:
           ports:
             - containerPort: 3306
           livenessProbe:
-            tcpSocket:
+            tcpSocket:  # pkill mysqld이 되는 것도 인식함!
               port: 3306
           volumeMounts:
           - name: mysql
