@@ -6,7 +6,9 @@ RUN 	apk add php \
 				php-fpm php-mbstring php-json php-session php-mysqli php-session
 RUN		apk add nginx
 
-RUN	wget -O /tmp/phpmyadmin.tar.gz https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
+# RUN	wget -O /tmp/phpmyadmin.tar.gz https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
+##  21.2.25 phpmyadmin이 새로 업데이트되면서 갑자기 phpmyadmin으로 접속이 되지않았다. 연결이 잘 되지 않는다. 이전 버전을 이용하자.
+RUN wget -O /tmp/phpmyadmin.tar.gz https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.tar.gz
 RUN tar -xzvf /tmp/phpmyadmin.tar.gz -C /tmp
 RUN rm -rf /tmp/phpmyadmin.tar.gz
 RUN mv /tmp/php* /tmp/phpmyadmin
