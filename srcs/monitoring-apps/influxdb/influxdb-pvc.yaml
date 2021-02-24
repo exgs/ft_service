@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: influxdb-pvc
   labels:
-    app: influxdb
+    pvc: influxdb
 spec:
   storageClassName: manual
   accessModes:
@@ -11,3 +11,6 @@ spec:
   resources:
     requests:
       storage: 250Mi
+  selector:
+    matchLabels:
+      pv: influxdb # binding할 pv를 생성된 pv중에서 label로 선택함
