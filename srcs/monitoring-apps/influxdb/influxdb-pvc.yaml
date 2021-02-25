@@ -10,7 +10,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 250Mi
+      storage: 500Mi
   selector:
     matchLabels:
       pv: influxdb # binding할 pv를 생성된 pv중에서 label로 선택함
