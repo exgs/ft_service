@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-result
+  labels:
+    name: deploy-result
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: result
+  template:
+    metadata:
+      name: result
+      labels:
+        name: result
+    spec:
+      containers:
+        - name: result
+          image: ghcr.io/subicura/voting/result:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: POSTGRES_HOST
+              value: "postgres"
+            - name: POSTGRES_PORT
+              value: "5432"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: result
+  labels:
+    name: result
+spec:
+  type: NodePort
+  selector:
+    name: result
+  ports:
+    - port: 80
+      nodePort: 31001

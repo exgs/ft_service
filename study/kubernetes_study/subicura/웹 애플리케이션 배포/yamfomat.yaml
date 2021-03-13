@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld
+  labels:
+    app: helloworld # - 쓰면 안됨
+    ooo: fff
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+        ooo: fff
+    spec:
+      containers:
+        - name: helloworld # - 꼭 써야함
+          image: ghcr.io/subicura/echo:v1

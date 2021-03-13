@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo
+  labels:
+    app: echo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: echo
+      tier: app
+  template:
+    metadata:
+      name: echo
+      labels:
+        app: echo
+        tier: app
+    spec:
+      containers:
+        - image: ghcr.io/subicura/echo:v1
+          name: echo
+    
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: echo
+spec:
+  type: NodePort
+  ports:
+    - port: 2222
+      targetPort: 3000
+      nodePort: 32000
+  selector:
+    app: echo
+    tier: app

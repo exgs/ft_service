@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-vote
+  labels:
+    name: deploy-vote
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: vote
+  template:
+    metadata:
+      name: vote
+      labels:
+        name: vote
+    spec:
+      containers:
+        - name: vote
+          image: ghcr.io/subicura/voting/vote:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: REDIS_HOST
+              value: "redis"
+            - name: REDIS_PORT
+              value: "6379"
+          
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: vote
+  labels:
+    name: vote
+spec:
+  type: NodePort
+  selector:
+    name: vote
+  ports:
+    - port: 80
+      nodePort: 31000

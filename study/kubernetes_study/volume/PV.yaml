@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv0003
+spec:
+  capacity: #용량 설정
+    storage: 5Gi 
+  volumeMode: Filesystem # filesystem or raw
+  accessModes: # pv 에대해 동시접근할 때
+    - ReadWriteOnce
+  # ReadWriteOndce->pod하나에만, ReadOnlyMany->여러개 파드 그리고 동시읽기가능, ReadWriteMany->여러개 파드 그리고 동시읽고쓰기
+  persistentVolumeReclaimPolicy: Recycle # pv는 pvc가 사라지면, 새로운 pvc로 재사용이 가능한데, 이때 사용되었던 디스크에 내용을 지울지 유지할지
+  #retain:데이터보존, recycle:데이터 flush, delete:pv도 삭제
+  storageClassName: slow
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /tmp
+    server: 192.168.64.3

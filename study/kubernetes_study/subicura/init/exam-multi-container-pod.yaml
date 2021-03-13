@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongodb-mysql
+  labels:
+    app: mongo
+    app: mysql
+spec:
+  containers:
+    - name: mongodb
+      image: mongo:4
+    - name: mysql
+      image: mysql:5.7
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "123456"
